@@ -1,0 +1,57 @@
+https://www.virtono.com/community/tutorial-how-to/how-to-install-apache-kafka-on-ubuntu-22-04/
+
+Section 1: Prerequisites
+Before we begin, let’s ensure that your Ubuntu 22.04 server meets the necessary requirements for installing Apache Kafka:
+
+Ubuntu 22.04 LTS installed and updated.
+Java Development Kit (JDK) installed (minimum version 8).
+Sudo privileges for executing administrative commands.
+Sufficient disk space and memory for optimal performance.
+
+Section 2: Installing Java Development Kit
+Apache Kafka on Ubuntu relies on Java, so we need to install the JDK. Follow these steps:
+
+Step 1: Update the package index:
+
+sudo apt update
+Step 2: Install the default JDK:
+
+sudo apt install default-jdk
+Step 3: Verify the installation:
+
+java -version
+Section 3: Downloading and Extracting Apache Kafka
+Now, let’s download and extract the Apache Kafka on Ubuntu binaries:
+
+Step 1: Visit the Apache Kafka website (https://kafka.apache.org/downloads) and check for the latest stable release.
+
+Step 2: Download the Kafka binaries using wget or your preferred method:
+
+wget https://downloads.apache.org/kafka/3.4.0/kafka_2.13-3.4.0.tgz
+Step 3: Extract the downloaded archive:
+
+tar -xzf kafka_2.13-3.4.0.tgz
+Section 4: Configuring Apache Kafka
+To configure Apache Kafka, we’ll make some modifications to the default settings:
+
+cd kafka_2.13-3.4.0/
+Step 2: Open the server.properties file using a text editor:
+
+nano config/server.properties
+Step 3: Adjust the settings according to your requirements, such as changing the broker ID, listeners, and log directories.
+
+
+bin/zookeeper-server-start.sh config/zookeeper.properties
+bin/kafka-server-start.sh config/server.properties
+Section 6: Testing Apache Kafka
+To ensure Apache Kafka is installed correctly, let’s perform a simple test:
+
+Step 1: Create a new topic:
+
+bin/kafka-topics.sh --create --topic test-topic --bootstrap-server localhost:9092 --replication-factor 1 --partitions 1
+Step 2: Produce a test message:
+
+bin/kafka-console-producer.sh --topic test-topic --bootstrap-server localhost:9092
+Step 3: Consume the message:
+
+bin/kafka-console-consumer.sh --topic test-topic --bootstrap-server localhost:9092 --from-beginning
